@@ -307,7 +307,7 @@ const binarySearch = (arr, target) => {
 
 Run `binarySearch` on a worst case scenario for the `sortedArr1`.  There are so many less console.log's! the array is _cut in half_ each time!
 
-Here's a really crazy thing: Check out `sortedArr2`, it is double the size of `sortedArr1`. With the `linearSearch` function we would, therefore, double the number of logs. What happens with the `binarySearch` is **1 additional console log**.
+Here's a really crazy thing: Check out `sortedArr2`, it is double the size of `sortedArr1`. With the `linearSearch` function we would, therefore, double the number of logs. What happens with the `binarySearch` is **1 additional console log**. Emphasize that while we aren't going deeply into sorting, this should make it clear _why sorting is a thing_.
 
 _The size of the input (`n`) has to double in size in order for our computer to have to do 1 more unit of work._ This is the very slow growing (logarithmic) line we see on the graph.
 
