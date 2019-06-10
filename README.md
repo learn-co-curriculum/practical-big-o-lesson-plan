@@ -20,19 +20,20 @@ I generally draw and label the axes prior to the start of lecture
 ## Prerequisites
 Prior to the Lecture ask that the students complete this problem as a Discussion Question. Slack out a message like this:
 
-> Hey all,
+```
+Hey all,
 at ${time} we will be doing a lecture on some introductory Computer Science topics.
 
-> *Prior to lecture*, please do this problem. You can do it solo or treat it like a Discussion Question you complete with a group. It can be your project partner or someone else.
+*Prior to lecture*, please do this problem. You can do it solo or treat it like a Discussion Question you complete with a group. It can be your project partner or someone else.
 
-> Write a function called
+Write a function called
 `hasTargetSum` that receives two arguments
-* an array of integers
-* a target integer
+  * an array of integers
+  * a target integer
 The function should return all pairs of numbers found in the array that add to the target number.
 
-> Ex:
-
+Ex:
+```
 ```js
 // Example 1:
 hasTargetSum([-1, 3, 8, 12, 4, 11, 7], 10)
