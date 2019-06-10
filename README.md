@@ -3,10 +3,10 @@
 ## Objectives
 Student will be able to:
 * define 'algorithm'
-* encounter Big o terminology and not feel intimidated
-* identify code that runs in linear, quadratic, or logarithmic time
+* encounter Big O terminology and not feel intimidated
+* identify code that runs in linear, quadratic, and logarithmic time
 * understand that ruby hashes & js objects have constant time look-ups and give a reasonable-ish description of how
-* Look for opportunities for time / space tradeoffs in interview type questions
+* look for opportunities for time / space tradeoffs in interview type questions
 
 ## Past Videos
 * [manhattan 021819](https://www.youtube.com/watch?v=Bz2yUt9PznQ&feature=youtu.be)
