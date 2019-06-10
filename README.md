@@ -8,6 +8,7 @@ Student will be able to:
 * understand that ruby hashes & js objects have constant time look-ups and give a reasonable-ish description of how
 * look for opportunities for time / space tradeoffs in interview type questions
 
+
 ## Past Videos
 * [manhattan 021819](https://www.youtube.com/watch?v=Bz2yUt9PznQ&feature=youtu.be)
 * [manhattan 031119](https://www.youtube.com/watch?v=a2dHj_lD3bo&feature=youtu.be)
@@ -17,7 +18,9 @@ At the end of lecture, you'll have something that looks like [this](https://gith
 
 I generally draw and label the axes prior to the start of lecture
 
-## Prerequisites
+## Prerequisites/Notes
+Anywhere in these notes marked with **Q:** and **A:** is a great place to open up the discussion to the group. Perhaps pause and give students a few moments to come up with answers with at their tables.
+
 Prior to the Lecture ask that the students complete this problem as a Discussion Question. Slack out a message like this:
 
 ```
@@ -128,6 +131,7 @@ Go through a few more examples, what happens if the number you were trying to fi
 > "Ok, so if we had an array of 10 things the worst case scenario is our computer has to look at 10 numbers, do 10 units of work. If we had an array of 100 things, the worst case is the computer looks at 100 things. Ok, so if we had an array of _n_ things, how many elements would our computer have to look at in the worst case? _n_."
 
 **Q:** What would this look like if we tried to draw this out on a graph
+
 **A:** Do your best to draw a _perfectly straight line_. This is, like, the hardest part of the lecture.
 
 Conclude that this is called "big o of n" aka `O(n)` aka "linear time".
