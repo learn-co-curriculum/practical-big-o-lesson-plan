@@ -1,52 +1,31 @@
-# Practical Big O Lesson Plan
+# **Computer Science Series: Big O Notation**
 
-## Objectives
-Student will be able to:
-* define 'algorithm'
-* encounter Big O terminology and not feel intimidated
-* identify code that runs in linear, quadratic, and logarithmic time
-* understand that ruby hashes & js objects have constant time look-ups and give a reasonable-ish description of how
-* look for opportunities for time / space tradeoffs in interview type questions
+## SWBATs
+- [ ] Define 'algorithm'
+- [ ] Encounter Big O terminology and not feel intimidated
+- [ ] Identify code that runs in linear, quadratic, and logarithmic time
+- [ ] Understand that Ruby hashes & Javascript objects have constant time look-ups
+- [ ] Understand time / space tradeoffs in interview questions
 
-
-## Past Videos
-* [manhattan 021819](https://www.youtube.com/watch?v=Bz2yUt9PznQ&feature=youtu.be)
-* [manhattan 031119](https://www.youtube.com/watch?v=a2dHj_lD3bo&feature=youtu.be)
-
-## Whiteboard
-At the end of lecture, you'll have something that looks like [this](https://github.com/learn-co-curriculum/nyc-web-career-031119/blob/master/bigo031119.png)
-
-I generally draw and label the axes prior to the start of lecture
-
-## Prerequisites/Notes
-Anywhere in these notes marked with **Q:** and **A:** is a great place to open up the discussion to the group. Perhaps pause and give students a few moments to come up with answers with at their tables.
-
-Prior to the Lecture ask that the students complete this problem as a Discussion Question. Slack out a message like this:
-
-```
-Hey all,
-at ${time} we will be doing a lecture on some introductory Computer Science topics.
-
-*Prior to lecture*, please do this problem. You can do it solo or treat it like a Discussion Question you complete with a group. It can be your project partner or someone else.
+## Discussion Question
+Prior to the lecture, students should complete this problem as a Discussion Question:
 
 Write a function called
-`hasTargetSum` that receives two arguments
+`hasTargetSum` that receives two arguments:
   * an array of integers
   * a target integer
 The function should return all pairs of numbers found in the array that add to the target number.
 
-Ex:
-```
 ```js
 // Example 1:
 hasTargetSum([-1, 3, 8, 12, 4, 11, 7], 10)
-
 // should return
 // [[-1, 11], [3, 7]]
 
 // it is fine if you return repeats
 // ex:
 // [[-1, 11], [3, 7], [11, -1], [7, 3]]
+
 
 // Example 2:
 hasTargetSum([22, 19, 4, 6, 30, -6], 25)
@@ -55,29 +34,33 @@ hasTargetSum([22, 19, 4, 6, 30, -6], 25)
 // or [[19, 6], [6, 19]]
 ```
 
-## Lecture Notes
 
-### Step 1: Define Big O
-Stress that Big O is a pretty intuitive concept, promise students that they already have an understanding of the concept. (Specifically, you can really hammer home what "linear time" means, everyone sort of already gets that even if they don't know it). Unfortunately, it is surrounded in a bunch of language and terminology that can be intimidating and obfuscatory.
+# **Defining Big O**
+Big O is a pretty intuitive concept! Some of the terminology and jargon might be a little intimidating, but you'll be a master by the end of this lecture.
 
-Big O is a way to compare algorithms to each other. It doesn't make sense to compare, for example, the number of seconds some code takes to run because that would be different on different computers. It also would be different given different inputs. So we'll need some way to describe algorithms' efficiency in relation to each other in a pretty abstract and high-level way.
+![Master of Big O](https://media.giphy.com/media/dRk2vIzh5v0NG/200w_d.gif)
 
-Why is this important? As programmers, we're balancing the efficiency of an algorithm compared to the amount of space in memory that an algorithm requires. WE MAKE THIS DECISION. The answer will vary depending on what we're prioritizing for the end user. If they're trying to look up a specific friend on a social media site, does it make sense to iterate through every user before returning the matching user(s)? Or is there a more efficient way to query the database and return the requested data for a better user experience?
+**Big O is a way to compare algorithms to each other.** It doesn't make sense to compare, for example, the number of seconds that some algorithm takes to complete because that would be different on different computers. It also would be different given different inputs. So developers need some way to describe algorithms' efficiency in relation to each other in an abstract and high-level way.
+
+Why is this important? As programmers, we will balance the  **_efficiency_** of an algorithm against the amount of **_space in memory_** that an algorithm requires.
+
+**WE 👏 GET 👏 TO 👏 MAKE 👏 THIS 👏 DECISION.**
+
+The answer will vary depending on what we're prioritizing for the end user.
+
+If a user wants to look up a specific friend on a social media site, does it make sense to iterate through every user before returning the matching user(s)? Or is there possibly a more efficient way to query the database and return the requested data for a better user experience?
+
+*In this example, we are likely going to prioritize the amount of time that it takes your application to return and render the user(s) from the database, as opposed to using the least amount of memory.*
 
 
-### Step 2: Define Algorithm
-But first! let's define the term.
+# **WTF is an Algorithm??**
+An **algorithm** is simply a procedure, or set of instructions.
 
-**Q:** What does 'algorithm' mean?
+![How to Grill a Steak](https://media.giphy.com/media/CpOhT5rJG1xdu/giphy.gif)
 
-**A:** A procedure; a set of instructions.
+### Let's Break it Down
 
-
-### Examples
-
-**Cute Examples**
-
-Give some goofy/easy examples, reinforcing terms like "procedure" and "instructions" for example the algorithm for washing your hair:
+In the real world, you utilize algorithms all the time! If you had to describe how you wash your hair, you would likely outline the following instructions:
 
 ```
 lather
@@ -85,7 +68,7 @@ rinse
 repeat
 ```
 
-Now obviously that's not the full algorithm because that's an infinite loop. The full procedure is like
+That's not *really* the full algorithm because that's an infinite loop. The full procedure could more accurately be expressed as:
 
 ```
 while (hair != clean) {
@@ -94,28 +77,32 @@ while (hair != clean) {
 }
 ```
 
-Next, these are useful algorithms to give as examples as they will come up later in the lecture.
+Another example of an algorithm that you might use all the time are recipes! If you want to make some delicious chocolate chip cookies, you'd want complete the following steps:
 
-**Finding a Word in a Dictionary Example**
 ```
-open up the dictionary, is the word you're looking for alphabetically before the words on the page or after?
-
-if (before) {
-  open up the dictionary to somewhere before the current page
-} else if (after)  {
-  open up to some page after the current page
-}
-
-repeat
+1. Preheat the oven to 350 F.
+2. Microwave the butter for about 40 seconds.
+Butter should be completely melted but shouldn't be hot.
+3. In a large bowl, mix butter with the sugars
+until well-combined.
+4. Stir in vanilla and egg until incorporated.
+5. Add the flour, baking soda, and salt.  
+6. Mix dough until just combined.
+Dough should be soft and a little sticky but not overly sticky.
+7. Stir in chocolate chips.
+8. Scoop out 1.5 tablespoons of dough and place on baking sheet.
+9. Bake for 7-10 minutes, or until cookies are set.
+They will be puffy and still look a little underbaked
+in the middle.
 ```
 
-Next, step through the algorithm for a simple O(n) method like Ruby's `.find`. This will start transitioning you into the next part of the lecture.
+Any set of instructions or a defined procedure on how to complete a task could also be categorized as an algorithm.
 
-## Step 3: Linear Time
+![Chocolate Chip Cookies Baking](https://media.giphy.com/media/IFHs8yM3SKuJi/giphy-downsized.gif)
 
-**Linear Time `find` Example**
+# **Linear Time**
 
-Make an array of 10 numbers, talk through in excruciating detail what happens each step of the way. Go slowly.
+As our first foray into Big O, let's examine how the `.find` method works under the hood.
 
 ```ruby
 arr = (1..10).to_a
@@ -124,33 +111,43 @@ arr.find do |n|
   n == 3
 end
 ```
-> Ex: "`find` is an enumerable method so we start iterating. The first element, `1` is yielded to the block. The block variable `n` is now bound to the value `1`. Did we meet the condition: is `1` equal to `3`? Nope, ok, next element. Now the second element `2` is yielded to the block, `n` is now bound to the value `2`. Is `2` equal to `3` -> no -> next elem. Now `3` is yielded to the block. Is `3 == 3` ok, great, stop and return the found element."
 
-Go through a few more examples, what happens if the number you were trying to find was `7`, what if it was `1`.
+* `.find` is an enumerable method so we start iterating.
+* The first element, `1` is yielded to the block.
+* The block variable `n` is now bound to the value `1`.
+* Did we meet the condition: is `1` equal to `3`?
+* Nope, okay, let's consider the next element in the array.
+* Now `2` is yielded to the block, `n` is now bound to the value `2`.
+* Is `2` equal to `3`? No.
+* The next element of the array is yielded to the block and `n` is bound to the value `3`.
+* Is `3 == 3`? YES!
+* Okay, great, stop iterating and return the found element.
 
-**Q:** What's the worst case scenario?
+What happens if the number the method was trying to find is `7`?
 
-**A:** people will usually say `10`, but what about: `11` or `1001` or `"whatever"`. In Big O we sort of only care about this worst case scenario because we only care about a high level summary of the algorithm. We don't care that sometimes it might find the element on the first try, or sometimes on the third try or whatever, or sometimes not at all; we just care about describing the process from a high level.
+What if it was `1`?
 
-> "Ok, so if we had an array of 10 things the worst case scenario is our computer has to look at 10 numbers, do 10 units of work. If we had an array of 100 things, the worst case is the computer looks at 100 things. Ok, so if we had an array of _n_ things, how many elements would our computer have to look at in the worst case? _n_."
+In an array of `n` elements, the worst case scenario is that the algorithm needs to make `n` iterations.
 
-**Q:** What would this look like if we tried to draw this out on a graph
+When we consider the worst case scenario, an enumerable must iterate through every element in the array and either return that element, or fail to find an element that fulfills the condition. Whether it might find the element on the first try, or on the third try, or sometimes not at all is not important; in regards to Big O, developers simply care about describing the process from the highest, most abstract level.
 
-**A:** Do your best to draw a _perfectly straight line_. This is, like, the hardest part of the lecture.
+If you were to chart the `.find` method on a graph where the x-axis represents the number of elements and the y-axis represents the units of work that your computer has to do, it would follow the green line on the graph below.
 
-Conclude that this is called "Big O of n" aka `O(n)` aka "linear time".
+![Big O Graph](public/big o graph.png)
 
-Why "linear time"? Because of what we just drew out on the graph. As the size of the input grows the algorithm will take more time directly linearly proportionally.
+### This is called **"Big O of N"** OR OTHERWISE **`O(n)`** OR ALSO CALLED **linear time**.
 
-> "In an array of four elements, it could take *up to* four operations in order to iterate through that array. For an array of 100 or one million or _n_ elements, it takes a proportional _n_ amount of work units to iterate through each of those arrays."
+Why linear time? Because the algorithm creates a perfectly straight line on the graph. **_As the size of the input grows, the algorithm will take more time directly linearly proportionally._**
 
-At this point, demonstrate that the line is linear because it proportionally increases along both axes simultaneously. Point out points on the line and say this is 4 elements at 4 units of work, then a later point on the graph is 100 elements of the array to the left and 100 units of work up.
+One more time for the people in the back: **_it grows proportionally along both axes simultaneously._**
+
+For an array with four elements (four points to the left on the x-axis), it could require up to four units of work (four points up on the y-axis). For an array with one hundred elements, it could take up to one hundred elements of work, and the coordinates would be (100, 100). For an array of `n` elements, it could take up to `n` elements of work to iterate through the array.
 
 
-## Step 4: Drop the constant factors
-### in Big O we just care about a high level summary
+## Constant Factors
+### REMEMBER: in Big O, focus **_only_** a high level summary
 
-It's worth taking a break to make this point. It can be confusing. Ask students to think through writing out a few methods.
+
 
 The task is to take the average of an array of numbers and then return `true` or `false` if the array contains the average number
 
@@ -204,7 +201,22 @@ But **No!**. This is not the right answer. You might think you're being extra pr
 
 `2n` would be a slightly steeper line on our graph, but it is still a line. Big O is concerned about patterns on the graph that will be drastically different than straight lines. Let's take a look at one of those now.
 
-## Step 5: Logarithmic Time
+
+# **Logarithmic Time**
+
+**Finding a Word in a Dictionary Example**
+```
+open up the dictionary, is the word you're looking for alphabetically before the words on the page or after?
+
+if (before) {
+  open up the dictionary to somewhere before the current page
+} else if (after)  {
+  open up to some page after the current page
+}
+
+repeat
+```
+
 
 Thought Experiment: Ask students to imagine the world's worst dictionary, one in which there is no pattern to the order of the words. They are randomly ordered.
 
@@ -253,7 +265,7 @@ If they care to know, it's really `log base 2` and that 2 comes from the "cut in
 
 This procedure can drastically decrease the runtime of algorithms, let's analyze this further.
 
-## Step 5: Not exactly sorting, but why sorting is important
+## Why Bother with Sorting?
 ### Let's add a ton of `console.log`s to some code
 
 ```
@@ -321,7 +333,7 @@ _The size of the input (`n`) has to double in size in order for our computer to 
 
 What would a very fast growing line on the graph look like?
 
-## Step 6: Analyze Prerequisite problem.
+## Now Back to that Discussion Question...
 
 Have a student describe from a high level the procedure they or their group used to solve this problem.
 
@@ -375,7 +387,7 @@ Draw it out on the graph.
 
 *The TL;DR of this entire lecture is if you see a loop inside of a loop it's O(n^2). Though there are some important talking points around this discussed further below.*
 
-#### Aside on optimization
+#### Optimizing
 The reason students often get duplicates in their outputs (`[[3,7], [7,3]]`) is that they are attempting to combine each element with every single other one. Really, they just need to compare each element to the remaining elements they have not seen.
 
 Simply changing the inner loop to start at the next element, will remove the duplicates in the outputs
@@ -388,7 +400,7 @@ for (let j = i + 1; j < arr.length; j++)  { /* ... */ }
 
 **A:** It is still quadratic time. You might want to quibble and be like this isn't fully `n` times `n`, but in fact it's `n` times `n minus a little`. But that `minus a little` is exactly the "constant factor" we don't care about in Big O. Just because we haven't changed the big o doesn't mean optimizations like this are not worth making :)
 
-## Step 7: Iteratively approach a linear time solution
+## So *How Exactly* Can We Approach Linear Time from Quadratic Time???
 
 There is a way to solve this problem in linear time. Aka _one loop_.
 
@@ -425,7 +437,7 @@ But this refactor gave us an interesting idea...
 
 Asking an array the question, "hey array do you contain an element?" with `.includes` was O(n). What are some other data structures we can ask questions of to see if they contain values?
 
-## Step 8: Discuss Hashes and Constant Time
+# **Hashes && Constant Time**
 
 Poll that everyone is comfortable with asking a question of a hash or object.
 
@@ -489,22 +501,27 @@ Now we truly have 1 loop which means this operates linear time. We did this by m
 
 Discuss when and why you might or might not decide to make this tradeoff.
 
-## Step 10: Why Do We Care & Assign Practice Problem
 
-There are tons of interview type problems that have both a quadratic time solution and a more optimal linear time solution. You can apply this strategy in a lot of places...
 
-### BUT...
-### DO NOT PREMATURELY OPTIMIZE...
+# **BUT...**
+# **DO NOT PREMATURELY OPTIMIZE...**
 
 The _wrong_ takeaway from this lecture would be:
 
 > uh oh im thinking of a solution that would mean a loop inside of a loop and i heard that's bad so there must be a better solution so im going to let that stop me from writing any functioning code.
 
-You would mark yourself as an _amazing_ candidate if you instead said something like
+You would mark yourself as an **_amazing_** candidate if you instead said something like
 
 > ok, for the solution i want to attempt i want to compare every element to each other element. This will mean the function will run in O(n^2) time. I want to start writing that code, get it working, and then see if we can refactor to linear time. Usually you can do that by creating a hash to store data so that's where i would start with that.
 
 Even if you didn't fully get to the refactored solution you still did an amazing job articulating yourself.
 
+
+
+## **Practice Problem**
+
+There are tons of interview type problems that have both a quadratic time solution and a more optimal linear time solution. You can apply this strategy in a lot of places...
+
 Here's an example problem where you can apply this same strategy. Start with the quadratic time solution and refactor to linear time by using a hash!
+
 [Ransom Note Problem](https://gist.github.com/alexgriff/0061bd3ff76c06341a62489899890b01)
