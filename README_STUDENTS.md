@@ -135,7 +135,7 @@ If you were to chart the `.find` method on a graph where the x-axis represents t
 
 ![Big O Graph](public/big o graph.png)
 
-### This is called **"Big O of N"** OR OTHERWISE **`O(n)`** OR ALSO CALLED **linear time**.
+### This is called **Big O of N** or **`O(n)`** and also **linear time**.
 
 Why linear time? Because the algorithm creates a perfectly straight line on the graph. **_As the size of the input grows, the algorithm will take more time directly linearly proportionally._**
 
@@ -143,24 +143,29 @@ One more time for the people in the back: **_it grows proportionally along both 
 
 For an array with four elements (four points to the left on the x-axis), it could require up to four units of work (four points up on the y-axis). For an array with one hundred elements, it could take up to one hundred elements of work, and the coordinates would be (100, 100). For an array of `n` elements, it could take up to `n` elements of work to iterate through the array.
 
+That's it! That's the first category of Big O!
+
+![Cheering Minions](https://media.giphy.com/media/11sBLVxNs7v6WA/giphy-downsized.gif)
+
 
 ## Constant Factors
 ### REMEMBER: in Big O, focus **_only_** a high level summary
 
-
-
-The task is to take the average of an array of numbers and then return `true` or `false` if the array contains the average number
+Let's consider the following methods. They will
+take the average of an array of numbers and then return `true` or `false` if the array contains the average number:
 
 ```ruby
 def average(arr)
-  # complete this code together
-  arr.reduce(:+) / arr.size.to_f
+  # .reduce takes in an argument
+  # this argument sets the initial value of the sum
+  # then it iterates through every element in the array
+  # and adds that number to the sum
+  # then returns the sum
+  arr.reduce(0){|sum, num| sum + num } / arr.size.to_f
 end
 
 def contains_avg?(arr)
-  # complete this code together
   avg = average(arr)
-
   arr.includes { |n| n == avg }
 end
 
@@ -173,33 +178,22 @@ avg(b)
 # => returns `false`
 ```
 
-**Q**: What's the Big O of this?
+If we consider what the Big O of `contains_avg?`, it first calls `average`, which uses `.reduce`. This will iterate through the entire array, and then do one more unit of work to divide the summed array against the size of the array. The Big O of `average` would be `O(n + 1)`
 
-**(Tentative) A:** Well... ok, the `.includes` part is O(n), it's the exact same algorithm as `.find`, we look at the first element, is it what we are looking for, if not, look at the next, etc...
+So once `contains_avg?` has the average of the array, it also iterates through every element in the original array to compare it to the returned value of `average`. So the Big O of `.includes` is `O(n)`.
 
-What about the `average` part? The "get the sum of all the numbers part" (`.reduce`) seems also to be O(n), which makes sense as a bigger input array would mean my computer has to do more stuff...
+So you might think that Big O of the entire operation is `O(2n + 1)`...
 
-Then we have to always divide by the length at the end so that's like, maybe + 1 thing the computer has to do...
+#### BUT NO!
 
-```ruby
-def contains_avg?(arr)
-  avg = average(arr) # so this is O(n) + 1 maybe?
+![Confused Puppos](https://media.giphy.com/media/7L7hN0lga40lG/giphy-downsized.gif)
 
-  arr.includes { |n| n == avg } # this part is O(n)
-end
-```
+#### Huh???
 
-so.. is the Big O of this?
+We **have** to remember that Big O is simply  the highest level summary of the algorithm. Big O of `contains_avg?` is still `O(n)`, or **linear time**. _**We drop the constant factor**, or in other words, you can ignore any of the constants (or integers) that would otherwise affect how we graph the algorithm._ The `2` and the `+ 1` go away.
 
-```
-O(2n + 1)
-```
+`2n` would be a slightly steeper line on our graph, but it is still a **line**. Big O is simply concerned about _patterns_ on the graph. Some other types of Big O will be drastically different than straight lines.
 
-Seems reasonable, people will nod their heads...
-
-But **No!**. This is not the right answer. You might think you're being extra precise by breaking down the problem like this, but this is not what Big O is about. Big O is a very high level summary of the algorithm. This is still O(n) aka linear time. The fancy way of putting this is that in Big O we drop the constant factor. Take out your red pen and cross out anything that is constant aka does not depend on the size of the input `n`. The `2` and the `+ 1` go away.
-
-`2n` would be a slightly steeper line on our graph, but it is still a line. Big O is concerned about patterns on the graph that will be drastically different than straight lines. Let's take a look at one of those now.
 
 
 # **Logarithmic Time**
