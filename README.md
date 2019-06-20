@@ -356,7 +356,7 @@ const hasTargetSum = (arr, target) => {
       const next = arr[j]
 
       if (current + next === target) {
-        arr.push([current, next])
+        results.push([current, next])
       }
     }
   }
@@ -408,7 +408,7 @@ const hasTargetSum = (arr, target) => {
     const numIWant = target - current
 
     if (numsIHaveAlreadySeen.includes(numIWant)) {
-      arr.push([current, numIWant])
+      results.push([current, numIWant])
     }
 
     numsIHaveAlreadySeen.push(current)
@@ -474,7 +474,7 @@ const hasTargetSum = (arr, target) => {
     const numIWant = target - current
 
     if (numsIHaveAlreadySeen[numIWant]) {
-      arr.push([current, numIWant])
+      results.push([current, numIWant])
     }
 
     numsIHaveAlreadySeen[current] = true
