@@ -143,7 +143,7 @@ One more time for the people in the back: **_it grows proportionally along both 
 
 For an array with four elements (four points to the left on the x-axis), it could require up to four units of work (four points up on the y-axis). For an array with one hundred elements, it could take up to one hundred elements of work, and the coordinates would be (100, 100). For an array of `n` elements, it could take up to `n` elements of work to iterate through the array.
 
-That's it! That's the first category of Big O!
+That's it! That's the first runtime of Big O!
 
 ![Cheering Minions](https://media.giphy.com/media/11sBLVxNs7v6WA/giphy-downsized.gif)
 
@@ -188,31 +188,22 @@ So you might think that Big O of the entire operation is `O(2n + 1)`...
 
 ![Confused Puppos](https://media.giphy.com/media/7L7hN0lga40lG/giphy-downsized.gif)
 
-#### Huh???
+#### Huh? We _**have**_ to remember that Big O is simply the 👉 highest 👈 level summary of the algorithm.
 
-We **have** to remember that Big O is simply  the highest level summary of the algorithm. Big O of `contains_avg?` is still `O(n)`, or **linear time**. _**We drop the constant factor**, or in other words, you can ignore any of the constants (or integers) that would otherwise affect how we graph the algorithm._ The `2` and the `+ 1` go away.
+Big O of `contains_avg?` is still `O(n)`, or **linear time**. _**We drop the constant factor**, or in other words, you can ignore any of the constants (or integers) that would otherwise affect how we graph the algorithm._ The `2` and the `+ 1` go away.
 
 `2n` would be a slightly steeper line on our graph, but it is still a **line**. Big O is simply concerned about _patterns_ on the graph. Some other types of Big O will be drastically different than straight lines.
 
-
-
 # **Logarithmic Time**
 
-**Finding a Word in a Dictionary Example**
-```
-open up the dictionary, is the word you're looking for alphabetically before the words on the page or after?
+Let's consider another real world example before we dive into our next runtime.
 
-if (before) {
-  open up the dictionary to somewhere before the current page
-} else if (after)  {
-  open up to some page after the current page
-}
-
-repeat
-```
+Imagine the world's WORST dictionary. 🔥📚 There is no pattern to the order of the words; they're completely random. How would you go about finding any specific word in this dictionary? Perhaps using linear time: check the first word. Is it 
 
 
-Thought Experiment: Ask students to imagine the world's worst dictionary, one in which there is no pattern to the order of the words. They are randomly ordered.
+
+
+Thought Experiment: Ask students to
 
 **Q:** What is the Big O of finding a word in this horrible dictionary?
 
