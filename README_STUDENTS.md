@@ -241,17 +241,13 @@ This is called **logarithmic time** or `O(log n)`. It is the `yellow` line on th
 
 _NB: logarithm means slooooOOooooooooOoooooow growing. The arc on the line is gradually growing along the y-axis as it extends along the x-axis._
 
-_(If you care to know, it's really `log base 2` and that 2 comes from the "cut in half; cut in half; cut in half" part of the procedure, but this is usually left off.)_
+_g(If you care to know, it's really `log base 2` and that 2 comes from the "cut in half; cut in half; cut in half" part of the procedure, but this is usually left off.)_
 
 This procedure can drastically decrease the runtime of algorithms.
 
-## Why Bother with Sorting?
-### Let's add a ton of `console.log`s to some code
+## What's the Deal with Sorting?
 
-```
-  Gabbie added the files needed to run `arr`, `sortedArr1`,
-  `sortedArr2`, `linearSearch` and `binarySearch` to this repo ♥️
-```
+!(Sorting Hat)[https://media.giphy.com/media/PjTAj8HqlezBu/giphy-tumblr.gif]
 
 First, inspect the `arr` of 1000 random numbers and the `sortedArr1` of 1000 sorted numbers.
 
