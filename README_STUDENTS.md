@@ -235,15 +235,7 @@ if (before) {
 
 Each time we look at a word, the size of our input gets smaller by half. We divide by 2, divide by 2, divide by 2, etc.
 
-![Big O Graph](public/big o graph.png)
-
-This is called **logarithmic time** or `O(log n)`. It is the `yellow` line on the graph above!
-
-_NB: logarithm means slooooOOooooooooOoooooow growing. The arc on the line is gradually growing along the y-axis as it extends along the x-axis._
-
-_(If you care to know, it's really `log base 2` and that 2 comes from the "cut in half; cut in half; cut in half" part of the procedure, but this is usually left off.)_
-
-This procedure can drastically decrease the runtime of algorithms.
+#### _HINT HINT, THIS MIGHT BE ANOTHER BIG O RUN TIME..._
 
 ## What's the Deal with Sorting?
 
@@ -406,8 +398,17 @@ And if we ran `binarySearch(sortedArr2, 537)`, the result would be:
 
 Here's a really crazy thing: `sortedArr2` is double the size of `sortedArr1`. With the `linearSearch` function we would, therefore, double the amount of work. What happens with the `binarySearch` is **only one additional unit of work**.
 
-_The size of the input (`n`) has to double in size in order for our computer to have to do 1 more unit of work._ This is the very slow growing (logarithmic) line we see on the graph.
+_The size of the input (`n`) has to double in size in order for our computer to have to do 1 more unit of work._
 
+## This is called **logarithmic time** or `O(log n)`. It is the `yellow` line on the graph below!
+
+![Big O Graph](public/big o graph.png)
+
+**_Logarithm means sloooOoOOOoOoOooOoow growing. The arc on the line is gradually growing along the y-axis as it extends along the x-axis._**
+
+_(If you care to know, it's really `log base 2` and that 2 comes from the "cut in half; cut in half; cut in half" part of the procedure, but this is usually left off.)_
+
+**This procedure can drastically decrease the runtime of algorithms.**
 
 
 ## Now Back to that Discussion Question...
