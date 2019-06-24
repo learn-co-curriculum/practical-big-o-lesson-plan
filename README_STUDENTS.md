@@ -255,7 +255,7 @@ First, let's create an `arr` of 1000 random numbers:
 arr = [217, 777, 229, 696, 417, 897, 507, 222, 708, 14, 462, 381, 469, 152, 759, 443, 344, 313, 760, 850, 94, 686, 354, 937, 487, 586, 149, 770, 829, 59, 467, 69, 756, 972, 36, 80, 553, 900, 676, 498, 303, 649, 711, 496, 606, 805, 928, 828, 349, 609, 842, 587, 865, 834, 795, 857, 974, 491, 942, 828, 478, 157, 144, 277, 99, 534, 884, 712, 187, 486, 548, 76, 272, 438, 455, 399, 635, 112, 326, 686, 190, 554, 64, 741, 763, 415, 783, 514, 93, 191, 369, 844, 341, 417, 414, 934, 209, 726, 33, 281, …]
 ```
 
-In the below `linearSearch` function, it will take an array and a target number as arguments, and then iterate through the array. For each element that is yielded to the block, it will log the number of elements left in the array to compare, then it will compare that element against the target number, and return the number if it is equivalent to the target number.
+In the below `linearSearch` function, it will take an array and a target number as arguments.
 
 ```js
 const linearSearch = (arr, target) => {
@@ -271,7 +271,14 @@ const linearSearch = (arr, target) => {
 };
 ```
 
-So when I ran `linearSearch(arr, 55)`, the result was:
+- It will iterate through every element in the array.
+- For each element that is yielded to the block, it will first log the number of elements left in the array to compare
+- Then it will compare that element against the target number
+- No, okay, let's try again
+- And eventually it will return the number if it is equivalent to the target number (_or_ it may iterate through the entire array with no match)
+
+
+So when I ran `linearSearch(arr, 55)` searching for the target of `55`, the result was:
 
 ```js
 // Remaining elements to search: 1000
@@ -288,7 +295,7 @@ So when I ran `linearSearch(arr, 55)`, the result was:
 // 55
 ```
 
-**If you create an array of your own and run the same function, you may be able to find your targeted number, it may take longer, or it may never find it.**
+**If you create an array of your own and run the same function, you may be able to find your targeted number, it may take longer, or it may _never_ find it.**
 
 If we create a `sortedArr1`:
 
@@ -319,12 +326,9 @@ The runtime of `linearSearch` **_regardless of whether we run it with an unsorte
 
 ![Gasping Kitten](https://media.giphy.com/media/vSSdLSLbGIXio/giphy.gif)
 
-But if we _do_ have a sorted array, we can do better than linear time. Think of the dictionary, we know there is a pattern to arrangement of the elements, they're in alphabetical order, so we can use that knowledge to make choices, which half does the element live in.
+But if we _do_ have a sorted array, we can do better than linear time. Because the array is sorted, we know there is a pattern to arrangement of the elements, and we can use that knowledge to structure our search for a targeted element differently. _(Please note, this function is recursive, which we won't review in this lecture.)_
 
-Take a look at the following code, it's _recursive_ and we wont exactly cover that here, but it exactly follows the algorithm we described.
-
-
-
+Below is a **_binary search_** function.
 
 ```js
 const binarySearch = (arr, target) => {
@@ -349,6 +353,13 @@ const binarySearch = (arr, target) => {
   }
 };
 ```
+
+- It will identify the element at the midpoint of the array
+- It will determine if the midpoint is equivalent to the target integer
+- If it is, return it
+- If not, determine if the midpoint is greater or less than the target,
+- Slice off everything that is in the half of the array that we do NOT care about
+- Search the new, halved array for the targeted number again
 
 Run `binarySearch` on a worst case scenario for the `sortedArr1`.  There are so many less console.log's! the array is _cut in half_ each time!
 
