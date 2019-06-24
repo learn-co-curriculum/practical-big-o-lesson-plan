@@ -466,7 +466,7 @@ Well, let's think about it together.
 
 For every element of the array (that's `O(n)`) we have to try to combine it with **_every other element of the array_** (also `O(n)`).
 
-So if we had an 8 element array, for the first element, `hasTargetSum` would attempt to add it to 8 other things. Then for the second element, `hasTargetSum` would add it to all 8 other elements. This would occur for every element in the array. In total, this function would do 8 * 8 aka 64 comparisons.
+So if we had an 8 element array, `hasTargetSum` would attempt to add the first element to 8 other things. Then for the second element, `hasTargetSum` would add it to all 8 other elements. This would occur for every element in the array. In total, this function would do 8 * 8 aka 64 comparisons.
 
 This is `O(n^2)` aka "O of n squared" aka "quadratic time" and is very _fast growing_. Doubling the size of the input (`n`) _quadruples_ the amount of work the computer has to do. 5 squared is 25, 10 squared is 100.
 
