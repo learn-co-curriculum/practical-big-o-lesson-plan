@@ -400,7 +400,7 @@ Here's a really crazy thing: `sortedArr2` is double the size of `sortedArr1`. Wi
 
 _The size of the input (`n`) has to double in size in order for our computer to have to do 1 more unit of work._
 
-## This is called **logarithmic time** or `O(log n)`. It is the `yellow` line on the graph below!
+## The Big O of `binarySearch` is called **logarithmic time** or `O(log n)`. It is the **yellow** line on the graph below!
 
 ![Big O Graph](public/big o graph.png)
 
@@ -410,14 +410,19 @@ _(If you care to know, it's really `log base 2` and that 2 comes from the "cut i
 
 **This procedure can drastically decrease the runtime of algorithms.**
 
+![Snailed It](https://media.giphy.com/media/39wmvOJiUa3mxNembg/giphy.gif)
 
+# **Quadratic Time**
 ## Now Back to that Discussion Question...
 
-Have a student describe from a high level the procedure they or their group used to solve this problem.
+As a reminder, you were asked to create a function called
+`hasTargetSum` that receives two arguments:
+  * an array of integers
+  * a target integer
 
-I'll jot this down, and usually it looks something like this.
+The function should return all pairs of numbers found in the array that add to the target number.
 
-(In theory if the volunteer described the linear time solution I would probably pick another group, but it generally works out pretty straightforwardly where people have O(n^2) code)
+Now if we were going to pseudo-code out a potential solution, it may look like this:
 
 ```
 Make an empty array `results`
@@ -433,7 +438,7 @@ if (i + j == the target) {
 return results
 ```
 
-After confirming people understand this from a high level supply the functioning code.
+Which we could write in Javascript as follows:
 
 ```js
 const hasTargetSum = (arr, target) => {
@@ -455,9 +460,13 @@ const hasTargetSum = (arr, target) => {
 }
 ```
 
-**Q:** What's the big o of this?
+**What's the Big O of this?**
 
-**A:** Hmmm.. for every element of the array (that's `O(n)`) we have to try to combine it with _every other element of the array_ (also `O(n)`). So if we had an 8 element array for the first element I would attempt to add it to 8 other things. Then for the second element, I would add it to all 8 other elements, same for each element, so this puts as at 8 * 8 aka 64 comparisons.
+Well, let's think about it together.
+
+For every element of the array (that's `O(n)`) we have to try to combine it with **_every other element of the array_** (also `O(n)`).
+
+So if we had an 8 element array, for the first element, `hasTargetSum` would attempt to add it to 8 other things. Then for the second element, `hasTargetSum` would add it to all 8 other elements. This would occur for every element in the array. In total, this function would do 8 * 8 aka 64 comparisons.
 
 This is `O(n^2)` aka "O of n squared" aka "quadratic time" and is very _fast growing_. Doubling the size of the input (`n`) _quadruples_ the amount of work the computer has to do. 5 squared is 25, 10 squared is 100.
 
