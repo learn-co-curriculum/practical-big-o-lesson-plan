@@ -530,44 +530,54 @@ But are there any other data structures that contain values?
 
 ![Pondering Prince of Bel Air](https://media.giphy.com/media/y3QOvy7xxMwKI/giphy-downsized.gif)
 
-# **Hashes && Constant Time**
+## **Hashes && Constant Time**
 
-Poll that everyone is comfortable with asking a question of a hash or object.
-
-"hey hash do you have a value at this key?"
+When you have a hash of key-value pairs, you can ask the hash for the value by calling the key.
 
 ```ruby
 hash = {name: "Ian"}
 hash[:name]
-# => Ian
+# Ian
 
 hash[:something_else]
-# => nil
+# nil
 ```
 
-**Q:** Does anyone happen to know what's the big o of asking a hash this question?
+## The Big O of asking a hash if it has a matching key is **_Constant Time_**, or `O(1)`.
 
-**A:** It's _Constant Time_, we write this as `O(1)`. This means determining if a hash has a key in it works independently of the number of elements in the hash. A hash with 10 key value pairs or a hash with 10,000 key value pair can has equally fast look ups.
+Determining if a hash has a key in it works **_independently_** of the number of elements in the hash. A hash with 10 key value pairs or a hash with 10,000 key value pair can has equally fast look ups.
 
-Let's do a brief digression on how this works.
+Let's figure out how this works....
 
-Imagine a big messy pile of clothes [google image](https://www.google.com/search?rlz=1C5CHFA_enUS767US767&biw=1280&bih=652&tbm=isch&sa=1&ei=WJz-XPjjFOTs_Qb43p3YDA&q=big+pile+of+clothes&oq=big+pile+of+clothes&gs_l=img.3..0.7701.7701..8179...0.0..0.63.63.1......0....1..gws-wiz-img.gqw8JnFZtgA#imgrc=ZXaPip3IIBNWJM:)
+![Messy Pile of Clothes](https://www.designindaba.com/sites/default/files/styles/scaledlarge/public/node/news/22234/clothes-pile.jpg?itok=nzZBUzhq)
 
-What's the big O of finding your the missing sock you need in this pile? It's O(n), pull out one element, is that the sock? nope, discard and pull out the next, is that the sock? nope, etc.
+If we're searching for a specific sock in this giant pile of clothes, what is the Big O of this algorithm?
 
-Now imagine some Marie Kondo style drawer of very neat clothes [google image](https://www.google.com/search?rlz=1C5CHFA_enUS767US767&biw=1280&bih=652&tbm=isch&sa=1&ei=6Jz-XLXnA-S3gge8sokI&q=very+neat+clothes+drawers&oq=very+neat+clothes+drawers&gs_l=img.3...5824.6732..7040...0.0..0.64.449.8......0....1..gws-wiz-img.7CZYRdwRrYU#imgdii=EQ7I7x3U-xo-LM:&imgrc=ZMIGcnC7_8vswM:)
+It's O(n):
+- Pull out one piece of clothing
+- Is the missing sock?
+- If yes, great!
+- If not, let's try again.  
+- Pull out the next item of clothes.
+- Repeat until your pile of clothes has become two or more piles of clothing...
 
-Because every item has a designated place to live, we can do much better than O(n).
+Now, imagine some Marie Kondo style drawer of very neat clothes:
 
-Now imagine that you could have an infinite number of infinitely small drawers and a perfect system of remembering such that each item had one and exactly one drawer it could belong in if it exists. We could effectively say that finding the sock is independent of the total number clothes because there would be one designated drawer for the sock to be in if it existed. This is what constant time means.
+![Neat Clothes in Drawers](https://www.tasteofhome.com/wp-content/uploads/2018/03/shutterstock_453967519.jpg)
 
-Getting back to computers, the way this is done is with a _hash function_ works (hence the term 'hash'). When you ask a hash the question of wether it has a certain key it runs the key through a _hash function_ which corresponds to one place in memory where that value must exist if it is present in the hash.
+Because every item has a **SINGLE** designated place to live, we can do much better than O(n).
 
-So let's get rid of that inner loop.
+In a perfect universe, you could have an infinite number of infinitely small drawers and a ✨perfect✨ system of remembering where each item lives in it's own special drawer. We could effectively say that finding your missing sock is independent of the total number clothes because there would ONLY be one designated drawer for the sock if it existed. _This is what constant time means._
 
-## Step 9: Complete Refactor
+![Cat Doing Laundry](https://media.giphy.com/media/r1UDWqAh0ajK0/giphy.gif)
 
-So remember that the inner loop came from asking an array the question `includes`. Let's change that so we ask a hash. Spend some time showing that we don't really care what the value of the key value pair is. We just want a quick way to know if we have seen the element already or not.
+Getting back to computers now, the way this is done is with a _hash function_ works (hence the data structure term, 'hash'). **When you ask a hash the question of wether it has a certain key it runs the key through a _hash function_ which corresponds to one place in memory where that value must exist if it is present in the hash.**
+
+So let's refactor `hasTargetSum` so that our algorithm runs in linear time instead of quadratic time!
+
+## Refactor
+
+The inner loop exists because we queried an array with `.includes`. Knowing that hashes have a runtime of constant time, let's refactor so that we utilize a hash instead.
 
 ```js
 const hasTargetSum = (arr, target) => {
@@ -579,7 +589,7 @@ const hasTargetSum = (arr, target) => {
     const numIWant = target - current
 
     if (numsIHaveAlreadySeen[numIWant]) {
-      arr.push([current, numIWant])
+      results.push([current, numIWant])
     }
 
     numsIHaveAlreadySeen[current] = true
@@ -590,31 +600,45 @@ const hasTargetSum = (arr, target) => {
 }
 ```
 
-Now we truly have 1 loop which means this operates linear time. We did this by making a decision to make a tradeoff, we took up more space, allocated more memory for this extra hash.
+Let's see it in action!
 
-Discuss when and why you might or might not decide to make this tradeoff.
+```js
+array = [1, 3, 5, 7, 9, 11]
 
+hasTargetSum(array, 8)
 
+// {1: true}
+// {1: true, 3: true}
+// {1: true, 3: true, 5: true}
+// {1: true, 3: true, 5: true, 7: true}
+// {1: true, 3: true, 5: true, 7: true, 9: true}
+// {1: true, 3: true, 5: true, 7: true, 9: true, 11: true}
+// => results = [[5, 3], [7, 1]]
+```
 
-# **BUT...**
-# **DO NOT PREMATURELY OPTIMIZE...**
+`hasTargetSum` now truly has one loop, which means this operates **linear time**. We did this by making a 👉 decision 👈 to make a tradeoff: we took up more space by allocating more memory for this extra hash to make the runtime more efficient.
 
-The _wrong_ takeaway from this lecture would be:
+![Space Dog](https://media.giphy.com/media/YRjZCWEIqMuEU/giphy-tumblr.gif)
 
-> uh oh im thinking of a solution that would mean a loop inside of a loop and i heard that's bad so there must be a better solution so im going to let that stop me from writing any functioning code.
+## **BUT...**
+## **DO NOT PREMATURELY OPTIMIZE...**
 
-You would mark yourself as an **_amazing_** candidate if you instead said something like
+Please do NOT leave this lecture thinking...
 
-> ok, for the solution i want to attempt i want to compare every element to each other element. This will mean the function will run in O(n^2) time. I want to start writing that code, get it working, and then see if we can refactor to linear time. Usually you can do that by creating a hash to store data so that's where i would start with that.
+> Uh oh, I'm thinking of a solution that requires a loop inside of a loop, and i heard that's bad, so there must be a better solution... so I'm going to let that stop me from writing ANY functioning code.
 
-Even if you didn't fully get to the refactored solution you still did an amazing job articulating yourself.
+You would mark yourself as an **_amazing_** candidate if you _instead_ said something like...
 
+> Ok,  the solution that I want to attempt will compare every element to every other element. This function will run in O(n^2) time. I want to start writing that code, get it working, and then see if we can refactor into linear time. Usually, you can do that by creating a hash to store data, so that's where I would start.
 
+Even if you don't fully get to the refactored solution, you still did an amazing job by articulating yourself and acknowledging the Big O of your initial solution and how you could refactor for optimization. 💃💃
+
+![You Did It!](https://media.giphy.com/media/26DOoDwdNGKAg6UKI/giphy-downsized.gif)
 
 ## **Practice Problem**
 
-There are tons of interview type problems that have both a quadratic time solution and a more optimal linear time solution. You can apply this strategy in a lot of places...
+There are tons of whiteboarding/algorithm problems that have both a quadratic time solution and a more optimal linear time solution.
 
-Here's an example problem where you can apply this same strategy. Start with the quadratic time solution and refactor to linear time by using a hash!
+Here's an example problem where you can apply this same strategy. Start with the quadratic time solution and refactor to linear time by using a hash.
 
 [Ransom Note Problem](https://gist.github.com/alexgriff/0061bd3ff76c06341a62489899890b01)
