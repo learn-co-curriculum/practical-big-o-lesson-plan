@@ -249,7 +249,7 @@ This procedure can drastically decrease the runtime of algorithms.
 
 ![Sorting Hat](https://media.giphy.com/media/PjTAj8HqlezBu/giphy-tumblr.gif)
 
-First, let's create an `arr` of 1000 random numbers:
+First, let's create an `arr` of 1,000 random numbers:
 
 ```js
 arr = [217, 777, 229, 696, 417, 897, 507, 222, 708, 14, 462, 381, 469, 152, 759, 443, 344, 313, 760, 850, 94, 686, 354, 937, 487, 586, 149, 770, 829, 59, 467, 69, 756, 972, 36, 80, 553, 900, 676, 498, 303, 649, 711, 496, 606, 805, 928, 828, 349, 609, 842, 587, 865, 834, 795, 857, 974, 491, 942, 828, 478, 157, 144, 277, 99, 534, 884, 712, 187, 486, 548, 76, 272, 438, 455, 399, 635, 112, 326, 686, 190, 554, 64, 741, 763, 415, 783, 514, 93, 191, 369, 844, 341, 417, 414, 934, 209, 726, 33, 281, …]
@@ -297,7 +297,7 @@ So when I ran `linearSearch(arr, 55)` searching for the target of `55`, the resu
 
 **If you create an array of your own and run the same function, you may be able to find your targeted number, it may take longer, or it may _never_ find it.**
 
-If we create a `sortedArr1`:
+If we create a `sortedArr1` of 1,000 sorted elements:
 
 ```js
 sortedArr1 =  [1, 1, 2, 4, 6, 7, 7, 7, 8, 8, 9, 9, 9, 10, 10, 10, 12, 12, 15, 15, 15, 17, 18, 18, 19, 19, 20, 21, 22, 22, 23, 23, 24, 26, 27, 28, 29, 30, 32, 32, 32, 33, 34, 34, 35, 35, 36, 38, 38, 40, 41, 41, 41, 43, 44, 45, 46, 46, 47, 48, 50, 51, 53, 55, 55, 55, 55, 56, 57, 58, 58, 59, 60, 61, 62, 64, 65, 66, 67, 67, 67, 67, 68, 69, 70, 70, 70, 71, 73, 74, 74, 76, 77, 78, 78, 79, 80, 82, 83, 83, …]
@@ -326,7 +326,7 @@ The runtime of `linearSearch` **_regardless of whether we run it with an unsorte
 
 ![Gasping Kitten](https://media.giphy.com/media/vSSdLSLbGIXio/giphy.gif)
 
-But if we _do_ have a sorted array, we can do better than linear time. Because the array is sorted, we know there is a pattern to arrangement of the elements, and we can use that knowledge to structure our search for a targeted element differently. _(Please note, this function is recursive, which we won't review in this lecture.)_
+**But if we DO have a sorted array, we can do better than linear time. Because the array is sorted, we know there is a pattern to arrangement of the elements, and we can use that knowledge to structure our search for a targeted element differently.** _(Please note, this function is recursive, which we won't review in this lecture.)_
 
 Below is a **_binary search_** function.
 
@@ -361,13 +361,54 @@ const binarySearch = (arr, target) => {
 - Slice off everything that is in the half of the array that we do NOT care about
 - Search the new, halved array for the targeted number again
 
-Run `binarySearch` on a worst case scenario for the `sortedArr1`.  There are so many less console.log's! the array is _cut in half_ each time!
+Let's see it run... `binarySearch(sortedArr1, 201)`
 
-Here's a really crazy thing: Check out `sortedArr2`, it is double the size of `sortedArr1`. With the `linearSearch` function we would, therefore, double the number of logs. What happens with the `binarySearch` is **1 additional console log**. Emphasize that while we aren't going deeply into sorting, this should make it clear _why sorting is a thing_.
+```js
+// Remaining elements to search: 1000
+// Remaining elements to search: 500
+// Remaining elements to search: 250
+// Remaining elements to search: 125
+// Remaining elements to search: 63
+// Remaining elements to search: 32
+// Remaining elements to search: 16
+// Remaining elements to search: 8
+// Remaining elements to search: 4
+// Remaining elements to search: 2
+// 201
+```
+
+### WOW!
+
+It only had to do 10 units of work in order to find `201` as compared to hundreds (or more!) units of work in the `linearSearch()`
+
+If we were to create a sorted array of 2,000 elements:
+
+```js
+sortedArr2 = [0, 1, 1, 1, 1, 1, 2, 2, 4, 4, 5, 5, 6, 7, 7, 7, 7, 8, 8, 10, 11, 11, 11, 12, 12, 13, 13, 14, 14, 15, 16, 16, 17, 18, 18, 18, 19, 20, 20, 20, 21, 21, 21, 22, 22, 22, 22, 22, 22, 23, 24, 25, 25, 25, 25, 25, 26, 27, 27, 27, 28, 28, 28, 28, 29, 29, 29, 30, 31, 31, 32, 32, 32, 32, 32, 32, 33, 33, 34, 34, 35, 36, 36, 37, 38, 39, 39, 40, 40, 41, 42, 43, 43, 43, 43, 44, 44, 47, 47, 47, …]
+```
+
+And if we ran `binarySearch(sortedArr2, 537)`, the result would be:
+
+```js
+// Remaining elements to search: 2000
+// Remaining elements to search: 1000
+// Remaining elements to search: 500
+// Remaining elements to search: 250
+// Remaining elements to search: 125
+// Remaining elements to search: 62
+// Remaining elements to search: 31
+// Remaining elements to search: 16
+// Remaining elements to search: 8
+// Remaining elements to search: 4
+// Remaining elements to search: 2
+// 537
+```
+
+Here's a really crazy thing: `sortedArr2` is double the size of `sortedArr1`. With the `linearSearch` function we would, therefore, double the amount of work. What happens with the `binarySearch` is **only one additional unit of work**.
 
 _The size of the input (`n`) has to double in size in order for our computer to have to do 1 more unit of work._ This is the very slow growing (logarithmic) line we see on the graph.
 
-What would a very fast growing line on the graph look like?
+
 
 ## Now Back to that Discussion Question...
 
