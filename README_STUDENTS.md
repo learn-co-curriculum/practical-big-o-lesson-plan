@@ -237,13 +237,13 @@ Each time we look at a word, the size of our input gets smaller by half. We divi
 
 ![Big O Graph](public/big o graph.png)
 
-This is called **logarithmic time** or `O(log n)`. It is the yellow line on the graph above. 
+This is called **logarithmic time** or `O(log n)`. It is the `yellow` line on the graph above!
 
-Stress to students that you _truly do not need to know much about math to understand this._ You need to know that _logarithm means slow growing_.
+_NB: logarithm means slooooOOooooooooOoooooow growing. The arc on the line is gradually growing along the y-axis as it extends along the x-axis._
 
-If they care to know, it's really `log base 2` and that 2 comes from the "cut in half; cut in half; cut in half" part of the procedure, but this is usually left off.
+_(If you care to know, it's really `log base 2` and that 2 comes from the "cut in half; cut in half; cut in half" part of the procedure, but this is usually left off.)_
 
-This procedure can drastically decrease the runtime of algorithms, let's analyze this further.
+This procedure can drastically decrease the runtime of algorithms.
 
 ## Why Bother with Sorting?
 ### Let's add a ton of `console.log`s to some code
