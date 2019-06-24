@@ -466,15 +466,20 @@ Well, let's think about it together.
 
 For every element of the array (that's `O(n)`) we have to try to combine it with **_every other element of the array_** (also `O(n)`).
 
-So if we had an 8 element array, `hasTargetSum` would attempt to add the first element to 8 other things. Then for the second element, `hasTargetSum` would add it to all 8 other elements. This would occur for every element in the array. In total, this function would do 8 * 8 aka 64 comparisons.
+So if we had an 8 element array, `hasTargetSum` would attempt to add the first element to 8 other things. Then for the second element, `hasTargetSum` would add it to all 8 other elements. This would occur for every element in the array. In total, this function would do 8 * 8 units or work, or 64 comparisons.
 
-This is `O(n^2)` aka "O of n squared" aka "quadratic time" and is very _fast growing_. Doubling the size of the input (`n`) _quadruples_ the amount of work the computer has to do. 5 squared is 25, 10 squared is 100.
+![Road Runner](https://media.giphy.com/media/LfT85xyPFiGrK/200w_d.gif)
 
-Draw it out on the graph.
+## **This is `O(n^2)` aka "O of n squared" aka "quadratic time" and is very _fast growing_. Doubling the size of the input (`n`) _quadruples_ the amount of work that the computer has to do.**
 
-*The TL;DR of this entire lecture is if you see a loop inside of a loop it's O(n^2). Though there are some important talking points around this discussed further below.*
+### Quadratic time is the blue line on the graph below.
 
-#### Optimizing
+![Big O Graph](public/big o graph.png)
+
+
+**The TL;DR of Big O notation is that if you see a loop inside of a loop, it is O(n^2).**
+
+### Optimizing
 The reason students often get duplicates in their outputs (`[[3,7], [7,3]]`) is that they are attempting to combine each element with every single other one. Really, they just need to compare each element to the remaining elements they have not seen.
 
 Simply changing the inner loop to start at the next element, will remove the duplicates in the outputs
