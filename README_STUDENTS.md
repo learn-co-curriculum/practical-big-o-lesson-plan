@@ -241,17 +241,21 @@ This is called **logarithmic time** or `O(log n)`. It is the `yellow` line on th
 
 _NB: logarithm means slooooOOooooooooOoooooow growing. The arc on the line is gradually growing along the y-axis as it extends along the x-axis._
 
-_g(If you care to know, it's really `log base 2` and that 2 comes from the "cut in half; cut in half; cut in half" part of the procedure, but this is usually left off.)_
+_(If you care to know, it's really `log base 2` and that 2 comes from the "cut in half; cut in half; cut in half" part of the procedure, but this is usually left off.)_
 
 This procedure can drastically decrease the runtime of algorithms.
 
 ## What's the Deal with Sorting?
 
-!(Sorting Hat)[https://media.giphy.com/media/PjTAj8HqlezBu/giphy-tumblr.gif]
+![Sorting Hat](https://media.giphy.com/media/PjTAj8HqlezBu/giphy-tumblr.gif)
 
-First, inspect the `arr` of 1000 random numbers and the `sortedArr1` of 1000 sorted numbers.
+First, let's create an `arr` of 1000 random numbers:
 
-Run the `linearSearch` function on each and see the `console.log`s run, passing in a target element that is not in the array if you want to see the worst case.
+```js
+arr = [217, 777, 229, 696, 417, 897, 507, 222, 708, 14, 462, 381, 469, 152, 759, 443, 344, 313, 760, 850, 94, 686, 354, 937, 487, 586, 149, 770, 829, 59, 467, 69, 756, 972, 36, 80, 553, 900, 676, 498, 303, 649, 711, 496, 606, 805, 928, 828, 349, 609, 842, 587, 865, 834, 795, 857, 974, 491, 942, 828, 478, 157, 144, 277, 99, 534, 884, 712, 187, 486, 548, 76, 272, 438, 455, 399, 635, 112, 326, 686, 190, 554, 64, 741, 763, 415, 783, 514, 93, 191, 369, 844, 341, 417, 414, 934, 209, 726, 33, 281, …]
+```
+
+In the below `linearSearch` function, it will take an array and a target number as arguments, and then iterate through the array. For each element that is yielded to the block, it will log the number of elements left in the array to compare, then it will compare that element against the target number, and return the number if it is equivalent to the target number.
 
 ```js
 const linearSearch = (arr, target) => {
@@ -267,15 +271,60 @@ const linearSearch = (arr, target) => {
 };
 ```
 
-Ask students to analyze the runtime of this.
+So when I ran `linearSearch(arr, 55)`, the result was:
 
-**Q:** Did the array being sorted affect the performance of the algorithm?
+```js
+// Remaining elements to search: 1000
+// Remaining elements to search: 999
+// Remaining elements to search: 998
+// Remaining elements to search: 997
+// Remaining elements to search: 996
+// ...
+// Remaining elements to search: 411
+// Remaining elements to search: 410
+// Remaining elements to search: 409
+// Remaining elements to search: 408
+// Remaining elements to search: 407
+// 55
+```
 
-**A:** No. We still just looked at the first, checked it, looked at the next, checked it, etc.
+**If you create an array of your own and run the same function, you may be able to find your targeted number, it may take longer, or it may never find it.**
 
-But if we do have a sorted array, we can do better than linear time. Think of the dictionary, we know there is a pattern to arrangement of the elements, they're in alphabetical order, so we can use that knowledge to make choices, which half does the element live in.
+If we create a `sortedArr1`:
 
-Take a look at the following code, it's _recursive_ and we wont exactly cover that here, but it exactly follows the algorithm we described. (it's ok to gloss over most of this, the important parts are the `console.log`s)
+```js
+sortedArr1 =  [1, 1, 2, 4, 6, 7, 7, 7, 8, 8, 9, 9, 9, 10, 10, 10, 12, 12, 15, 15, 15, 17, 18, 18, 19, 19, 20, 21, 22, 22, 23, 23, 24, 26, 27, 28, 29, 30, 32, 32, 32, 33, 34, 34, 35, 35, 36, 38, 38, 40, 41, 41, 41, 43, 44, 45, 46, 46, 47, 48, 50, 51, 53, 55, 55, 55, 55, 56, 57, 58, 58, 59, 60, 61, 62, 64, 65, 66, 67, 67, 67, 67, 68, 69, 70, 70, 70, 71, 73, 74, 74, 76, 77, 78, 78, 79, 80, 82, 83, 83, …]
+```
+
+And if we run `linearSearch(sortedArr1, 71)` on this new, sorted array, the result might resemble...
+
+```js
+// Remaining elements to search: 1000
+// Remaining elements to search: 999
+// Remaining elements to search: 998
+// Remaining elements to search: 997
+// Remaining elements to search: 996
+// ...
+// Remaining elements to search: 915
+// Remaining elements to search: 914
+// Remaining elements to search: 913
+// 71
+```
+
+The runtime of `linearSearch` **_regardless of whether we run it with an unsorted or a sorted array_** is... 🤔 🤔 🤔
+
+#### **_O(n) or linear time!_**
+
+**The array being sorted DID NOT AFFECT the performance of the algorithm.**
+
+![Gasping Kitten](https://media.giphy.com/media/vSSdLSLbGIXio/giphy.gif)
+
+But if we _do_ have a sorted array, we can do better than linear time. Think of the dictionary, we know there is a pattern to arrangement of the elements, they're in alphabetical order, so we can use that knowledge to make choices, which half does the element live in.
+
+Take a look at the following code, it's _recursive_ and we wont exactly cover that here, but it exactly follows the algorithm we described.
+
+
+
 
 ```js
 const binarySearch = (arr, target) => {
