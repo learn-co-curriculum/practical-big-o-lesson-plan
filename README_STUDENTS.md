@@ -198,26 +198,23 @@ Big O of `contains_avg?` is still `O(n)`, or **linear time**. _**We drop the con
 
 Let's consider another real world example before we dive into our next runtime.
 
-Imagine the world's WORST dictionary. 🔥📚 There is no pattern to the order of the words; they're completely random. How would you go about finding any specific word in this dictionary? Perhaps using linear time: check the first word. Is it 
+Imagine the world's **WORST** dictionary. 🔥📚 There is no pattern to the order of the words; they're completely random. How would you go about finding any specific word in this dictionary? Perhaps using linear time:
 
-
-
-
-Thought Experiment: Ask students to
-
-**Q:** What is the Big O of finding a word in this horrible dictionary?
-
-**A:** O(n). This is the same algorithm as we have been discussing all along. Look at the first word, is it the word we want? Nope, ok, look at the next word. Is it the word we want? Nope, ok, look at the next, etc.
+- Find the first word in the dictionary.
+- Check the first word: is it what we're looking for?
+- Nope, okay, let's move on.
+- Repeat ad nauseum.
 
 In this world's worst dictionary, clearly finding a word in a "dictionary" with 10 words would take a lot less time than in a dictionary with 10,000 words.
 
-But is this how a real alphabetized dictionary works? Clearly we could find a word in a dictionary with 100 words faster than in a dictionary with 100,000 words.
+But is this how a real alphabetized dictionary works? **_No!_** By having an alphabetized dictionary, we can flip to the appropriate letter, and then flip through the surrounding pages until we finally find the word that we're looking for.
 
-**Q:** But would it take us significantly longer to find the word we're looking for in a dictionary with 101,000 words vs. the 100,000 word dictionary?
+![Creepy Book](https://media.giphy.com/media/l1J9HWBKLp20YfNAY/giphy.gif)
 
-**A:** Not really. There's definitely some relationship to the size of the dictionary and the time it would take, but it's not 1:1 linear.
+But it wouldn't **REALLY** take us significantly longer to find the word we're looking for in a dictionary with 101,000 words vs. the 100,000 word dictionary. There's definitely some relationship to the size of the dictionary and the time it would take, but it's not 1:1 linear.
 
 Thinking about this algorithm further, let's say we:
+
 ```
 open the dictionary to the exact middle word.
 is the word we want before it or after it
@@ -236,13 +233,11 @@ if (before) {
 }
 ```
 
-Notice that each time we look at a word, the size of our input gets smaller by half. We divide by 2, divide by 2, divide by 2, etc.
+Each time we look at a word, the size of our input gets smaller by half. We divide by 2, divide by 2, divide by 2, etc.
 
-What would this look like on our graph?
+![Big O Graph](public/big o graph.png)
 
-Draw out a very slow growing line.
-
-This is called "logarithmic time" aka `O(log n)`.
+This is called **logarithmic time** or `O(log n)`. It is the yellow line on the graph above. 
 
 Stress to students that you _truly do not need to know much about math to understand this._ You need to know that _logarithm means slow growing_.
 
