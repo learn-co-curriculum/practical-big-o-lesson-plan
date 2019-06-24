@@ -207,11 +207,11 @@ Imagine the world's **WORST** dictionary. 🔥📚 There is no pattern to the or
 
 In this world's worst dictionary, clearly finding a word in a "dictionary" with 10 words would take a lot less time than in a dictionary with 10,000 words.
 
-But is this how a real alphabetized dictionary works? **_No!_** By having an alphabetized dictionary, we can flip to the appropriate letter, and then flip through the surrounding pages until we finally find the word that we're looking for.
+But is this how a real alphabetized dictionary works? **_No!_** By having an alphabetized dictionary, we can flip to the appropriate letter, and then flip through the surrounding pages until we finally find the word that we're looking for. 🎉 🎉 🎉
 
 ![Creepy Book](https://media.giphy.com/media/l1J9HWBKLp20YfNAY/giphy.gif)
 
-But it wouldn't **REALLY** take us significantly longer to find the word we're looking for in a dictionary with 101,000 words vs. the 100,000 word dictionary. There's definitely some relationship to the size of the dictionary and the time it would take, but it's not 1:1 linear.
+But it wouldn't **REALLY** take us significantly longer to find the word we're looking for in a dictionary with 101,000 words compared to a 100,000 word dictionary. There's definitely some relationship to the size of the dictionary and the time it would take, but it's not 1:1 linear.
 
 Thinking about this algorithm further, let's say we:
 
@@ -235,7 +235,7 @@ if (before) {
 
 Each time we look at a word, the size of our input gets smaller by half. We divide by 2, divide by 2, divide by 2, etc.
 
-#### _HINT HINT, THIS MIGHT BE ANOTHER BIG O RUN TIME..._
+#### _HINT HINT, THIS MIGHT BE ANOTHER BIG O RUN TIME..._ 🙊
 
 ## What's the Deal with Sorting?
 
@@ -287,7 +287,7 @@ So when I ran `linearSearch(arr, 55)` searching for the target of `55`, the resu
 // 55
 ```
 
-**If you create an array of your own and run the same function, you may be able to find your targeted number, it may take longer, or it may _never_ find it.**
+**If you create an array of your own and run the same function, you may be able to find your targeted number, it may take longer, or it may _never_ find it.** 👹👹
 
 If we create a `sortedArr1` of 1,000 sorted elements:
 
@@ -314,11 +314,11 @@ The runtime of `linearSearch` **_regardless of whether we run it with an unsorte
 
 #### **_O(n) or linear time!_**
 
-**The array being sorted DID NOT AFFECT the performance of the algorithm.**
+**The array being sorted DID 🤜 NOT 🤛 AFFECT the performance of the algorithm.**
 
 ![Gasping Kitten](https://media.giphy.com/media/vSSdLSLbGIXio/giphy.gif)
 
-**But if we DO have a sorted array, we can do better than linear time. Because the array is sorted, we know there is a pattern to arrangement of the elements, and we can use that knowledge to structure our search for a targeted element differently.** _(Please note, this function is recursive, which we won't review in this lecture.)_
+**But if we DO have a sorted array, we 👏 can 👏 do 👏 better 👏 than linear time. Because the array is sorted, we know there is a pattern to arrangement of the elements, and we can use that knowledge to structure our search for a targeted element differently.** _(Please note, this function is recursive, which we won't review in this lecture.)_
 
 Below is a **_binary search_** function.
 
@@ -371,7 +371,7 @@ Let's see it run... `binarySearch(sortedArr1, 201)`
 
 ### WOW!
 
-It only had to do 10 units of work in order to find `201` as compared to hundreds (or more!) units of work in the `linearSearch()`
+It _ONLY_ had to do 10 units of work in order to find `201` as compared to hundreds (or more! 💀) units of work in the `linearSearch()`
 
 If we were to create a sorted array of 2,000 elements:
 
@@ -398,7 +398,7 @@ And if we ran `binarySearch(sortedArr2, 537)`, the result would be:
 
 Here's a really crazy thing: `sortedArr2` is double the size of `sortedArr1`. With the `linearSearch` function we would, therefore, double the amount of work. What happens with the `binarySearch` is **only one additional unit of work**.
 
-_The size of the input (`n`) has to double in size in order for our computer to have to do 1 more unit of work._
+_The size of the input (`n`) has to double in size in order for our computer to have to do 1 more unit of work._ 🙀🙀🙀
 
 ## The Big O of `binarySearch` is called **logarithmic time** or `O(log n)`. It is the **yellow** line on the graph below!
 
@@ -408,7 +408,7 @@ _The size of the input (`n`) has to double in size in order for our computer to 
 
 _(If you care to know, it's really `log base 2` and that 2 comes from the "cut in half; cut in half; cut in half" part of the procedure, but this is usually left off.)_
 
-**This procedure can drastically decrease the runtime of algorithms.**
+**This procedure can drastically 👇 decrease 👇 the runtime of algorithms.**
 
 ![Snailed It](https://media.giphy.com/media/39wmvOJiUa3mxNembg/giphy.gif)
 
@@ -470,37 +470,37 @@ So if we had an 8 element array, `hasTargetSum` would attempt to add the first e
 
 ![Road Runner](https://media.giphy.com/media/LfT85xyPFiGrK/200w_d.gif)
 
-## **This is `O(n^2)` aka "O of n squared" aka "quadratic time" and is very _fast growing_. Doubling the size of the input (`n`) _quadruples_ the amount of work that the computer has to do.**
+## This is `O(n^2)` or **_"O of n squared"_** or **_Quadratic Time_** and is very 🐆 🐆 🐆 _fast growing_. Doubling the size of the input (`n`) _quadruples_ the amount of work that the computer has to do.
 
 ### Quadratic time is the blue line on the graph below.
 
 ![Big O Graph](public/big o graph.png)
 
 
-**The TL;DR of Big O notation is that if you see a loop inside of a loop, it is O(n^2).**
+**The TL;DR of Big O Notation is that if you see a loop inside of a loop, it is O(n^2).** 🤓
 
 ### Optimizing
-The reason students often get duplicates in their outputs (`[[3,7], [7,3]]`) is that they are attempting to combine each element with every single other one. Really, they just need to compare each element to the remaining elements they have not seen.
+If your version of `hasTargetSum` produced duplicates in your outputs, i.e. (`[[3,7], [7,3]]`), your function simply combined each element with every single other one. Really, it just needs to compare each element to the remaining elements that it has not yet compared.
 
-Simply changing the inner loop to start at the next element, will remove the duplicates in the outputs
+Simply changing the inner loop to start at the next element, will remove the duplicates in the outputs...
 
 ```js
-for (let j = i + 1; j < arr.length; j++)  { /* ... */ }
+for (let j = i + 1; j < arr.length; j++)
 ```
 
-**Q:** What's the Big O of this though?
+But Big O has **NOT** changed with this refactor! 🤯 It is still quadratic time. REMEMBER, that we drop the constants and focus on the high level summary, so even though the refactor is more accurately `n` times `n minus a little`, we would still categorize the runtime as `O(n^2)`. HOWEVER, just because we haven't changed the Big O **doesn't** mean that optimizations like this are **not worth making**. 👀 👀
 
-**A:** It is still quadratic time. You might want to quibble and be like this isn't fully `n` times `n`, but in fact it's `n` times `n minus a little`. But that `minus a little` is exactly the "constant factor" we don't care about in Big O. Just because we haven't changed the big o doesn't mean optimizations like this are not worth making :)
+## So How *Exactly* Can We Approach Linear Time from Quadratic Time???
 
-## So *How Exactly* Can We Approach Linear Time from Quadratic Time???
+![Confused Garfield](https://media.giphy.com/media/ZNnQvIYzIBmZAbrBR7/giphy-downsized.gif)
 
-There is a way to solve this problem in linear time. Aka _one loop_.
+There is a way to solve this problem in linear time: in other words, with **_one loop_**.
 
-In computer science everything is a tradeoff. If we want this to take up less _time_ we will have to take up more _space_.  This is often a totally fine tradeoff to make. Memory is cheap.
+In computer science, everything is a tradeoff. If we want our algorithm to take up less _time_, we will have to take up more _space_. This is typically an acceptable tradeoff to make. 💸 Memory is cheap.
 
-Let's begin by allocating an extra auxiliary data structure in memory. We'll store the numbers we have already seen and then check if the number we want is a number we have already seen.
+Let's begin by allocating an extra data structure in memory. The algorithm will store the numbers that it has already iterated through and then check if the target number exists in the secondary array of "seen" numbers.
 
-The insight is that if the target is `10` and the current num is `6`, I want to know if I have already seen a `4` (ie `target - current`; `10 - 6`).
+The insight is that if the target is `10` and the current num is `6`, the function should know if it has already seen a `4` (i.e. `target - current`; `10 - 6`).
 
 ```js
 const hasTargetSum = (arr, target) => {
@@ -521,13 +521,14 @@ const hasTargetSum = (arr, target) => {
   return results
 }
 ```
-**Q:** Did we change the Big O? Is there a loop inside of a loop?
 
-**A:** Nope, we did not-- There are still 2 loops! It may seem like there are not, but what is the algorithm for that inner `.includes` we see in there? That's that same linear time algorithm we have discussed all along. It's nice to point out that especially in Ruby these loops can often be hidden from us. Every time you see a `.compact` or a `.uniq`... that's a loop.
+But we're still using two loops!
 
-But this refactor gave us an interesting idea...
+It may seem like there are not, but the runtime of `.includes` is the same linear time that we've seen earlier in this lecture. In Ruby, these loops can often be hidden from us. Every time you see a `.compact` or a `.uniq`... that's a loop.
 
-Asking an array the question, "hey array do you contain an element?" with `.includes` was O(n). What are some other data structures we can ask questions of to see if they contain values?
+But are there any other data structures that contain values?
+
+![Pondering Prince of Bel Air](https://media.giphy.com/media/y3QOvy7xxMwKI/giphy-downsized.gif)
 
 # **Hashes && Constant Time**
 
