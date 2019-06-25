@@ -57,11 +57,15 @@ hasTargetSum([22, 19, 4, 6, 30, -6], 25)
 
 ## Lecture Notes
 
-### Step 1: Define Algorithm
+### Step 1: Define Big O
 Stress that Big O is a pretty intuitive concept, promise students that they already have an understanding of the concept. (Specifically, you can really hammer home what "linear time" means, everyone sort of already gets that even if they don't know it). Unfortunately, it is surrounded in a bunch of language and terminology that can be intimidating and obfuscatory.
 
-Big O is a way to compare algorithms to each other. It doesn't make sense to compare, for example, the number of seconds some code takes to run because that would be different on different computers. It also would be different given different inputs. So we'll need some way to describe algorithms in relation to each other in a pretty abstract and high-level way.
+Big O is a way to compare algorithms to each other. It doesn't make sense to compare, for example, the number of seconds some code takes to run because that would be different on different computers. It also would be different given different inputs. So we'll need some way to describe algorithms' efficiency in relation to each other in a pretty abstract and high-level way.
 
+Why is this important? As programmers, we're balancing the efficiency of an algorithm compared to the amount of space in memory that an algorithm requires. WE MAKE THIS DECISION. The answer will vary depending on what we're prioritizing for the end user. If they're trying to look up a specific friend on a social media site, does it make sense to iterate through every user before returning the matching user(s)? Or is there a more efficient way to query the database and return the requested data for a better user experience?
+
+
+### Step 2: Define Algorithm
 But first! let's define the term.
 
 **Q:** What does 'algorithm' mean?
@@ -107,7 +111,7 @@ repeat
 
 Next, step through the algorithm for a simple O(n) method like Ruby's `.find`. This will start transitioning you into the next part of the lecture.
 
-## Step 2: Linear Time
+## Step 3: Linear Time
 
 **Linear Time `find` Example**
 
@@ -134,11 +138,16 @@ Go through a few more examples, what happens if the number you were trying to fi
 
 **A:** Do your best to draw a _perfectly straight line_. This is, like, the hardest part of the lecture.
 
-Conclude that this is called "big o of n" aka `O(n)` aka "linear time".
+Conclude that this is called "Big O of n" aka `O(n)` aka "linear time".
 
 Why "linear time"? Because of what we just drew out on the graph. As the size of the input grows the algorithm will take more time directly linearly proportionally.
 
-## Step 3: Drop the constant factors
+> "In an array of four elements, it could take *up to* four operations in order to iterate through that array. For an array of 100 or one million or _n_ elements, it takes a proportional _n_ amount of work units to iterate through each of those arrays."
+
+At this point, demonstrate that the line is linear because it proportionally increases along both axes simultaneously. Point out points on the line and say this is 4 elements at 4 units of work, then a later point on the graph is 100 elements of the array to the left and 100 units of work up.
+
+
+## Step 4: Drop the constant factors
 ### in Big O we just care about a high level summary
 
 It's worth taking a break to make this point. It can be confusing. Ask students to think through writing out a few methods.
@@ -148,7 +157,7 @@ The task is to take the average of an array of numbers and then return `true` or
 ```ruby
 def average(arr)
   # complete this code together
-  # ...
+  arr.reduce(:+) / arr.size.to_f
 end
 
 def contains_avg?(arr)
@@ -169,9 +178,9 @@ avg(b)
 
 **Q**: What's the Big O of this?
 
-**(Tentative) A:** Well... ok, the `.includes` part is O(n), it's the exact same algorithm as .find, we look at the first elem, is it what we are looking for, if not, look at the next, etc...
+**(Tentative) A:** Well... ok, the `.includes` part is O(n), it's the exact same algorithm as `.find`, we look at the first element, is it what we are looking for, if not, look at the next, etc...
 
-What about the `average` part? The "get the sum of all the numbers part" seems also to be O(n), which makes sense as a bigger input array would mean my computer has to do more stuff...
+What about the `average` part? The "get the sum of all the numbers part" (`.reduce`) seems also to be O(n), which makes sense as a bigger input array would mean my computer has to do more stuff...
 
 Then we have to always divide by the length at the end so that's like, maybe + 1 thing the computer has to do...
 
@@ -195,15 +204,15 @@ But **No!**. This is not the right answer. You might think you're being extra pr
 
 `2n` would be a slightly steeper line on our graph, but it is still a line. Big O is concerned about patterns on the graph that will be drastically different than straight lines. Let's take a look at one of those now.
 
-## Step 4: Logarithmic Time
+## Step 5: Logarithmic Time
 
 Thought Experiment: Ask students to imagine the world's worst dictionary, one in which there is no pattern to the order of the words. They are randomly ordered.
 
-**Q:** What is the big o of finding a word in this horrible dictionary?
+**Q:** What is the Big O of finding a word in this horrible dictionary?
 
-**A:** O(n). This is the same algorithm as we have been discussing all along. Look at the first word, is it the word we want? nope, ok, look at the next word. Is it the word we want? nope, ok, look at the next, etc.
+**A:** O(n). This is the same algorithm as we have been discussing all along. Look at the first word, is it the word we want? Nope, ok, look at the next word. Is it the word we want? Nope, ok, look at the next, etc.
 
-In this world's worst dictionary, clearly finding a word in a "dictionary" with 10 words would take a lot less time than in a dictionary with 10,00 words.
+In this world's worst dictionary, clearly finding a word in a "dictionary" with 10 words would take a lot less time than in a dictionary with 10,000 words.
 
 But is this how a real alphabetized dictionary works? Clearly we could find a word in a dictionary with 100 words faster than in a dictionary with 100,000 words.
 
@@ -247,11 +256,10 @@ This procedure can drastically decrease the runtime of algorithms, let's analyze
 ## Step 5: Not exactly sorting, but why sorting is important
 ### Let's add a ton of `console.log`s to some code
 
-I use this repo [https://github.com/alexgriff/intro-to-sorting](https://github.com/alexgriff/intro-to-sorting) and run the code in the chrome console.
-
-Specifically,
-* this file which has both a binary search and linear search implemented [https://github.com/alexgriff/intro-to-sorting/blob/master/binarysearch.js](https://github.com/alexgriff/intro-to-sorting/blob/master/binarysearch.js)
-* and this file which makes randomly generated arrays of various lengths [https://github.com/alexgriff/intro-to-sorting/blob/master/randomArray.js](https://github.com/alexgriff/intro-to-sorting/blob/master/randomArray.js)
+```
+  Gabbie added the files needed to run `arr`, `sortedArr1`,
+  `sortedArr2`, `linearSearch` and `binarySearch` to this repo ♥️
+```
 
 First, inspect the `arr` of 1000 random numbers and the `sortedArr1` of 1000 sorted numbers.
 
@@ -348,7 +356,7 @@ const hasTargetSum = (arr, target) => {
       const next = arr[j]
 
       if (current + next === target) {
-        arr.push([current, next])
+        results.push([current, next])
       }
     }
   }
@@ -400,7 +408,7 @@ const hasTargetSum = (arr, target) => {
     const numIWant = target - current
 
     if (numsIHaveAlreadySeen.includes(numIWant)) {
-      arr.push([current, numIWant])
+      results.push([current, numIWant])
     }
 
     numsIHaveAlreadySeen.push(current)
@@ -466,7 +474,7 @@ const hasTargetSum = (arr, target) => {
     const numIWant = target - current
 
     if (numsIHaveAlreadySeen[numIWant]) {
-      arr.push([current, numIWant])
+      results.push([current, numIWant])
     }
 
     numsIHaveAlreadySeen[current] = true
