@@ -3,7 +3,7 @@
 ## SWBATs
 - [ ] Define 'algorithm'
 - [ ] Encounter Big O terminology and not feel intimidated
-- [ ] Identify code that runs in linear, quadratic, and logarithmic time
+- [ ] Identify code that runs in linear, logarithmic, quadratic time
 - [ ] Understand that Ruby hashes & Javascript objects have constant time look-ups
 - [ ] Understand time / space tradeoffs in interview questions
 
@@ -14,6 +14,7 @@ Write a function called
 `hasTargetSum` that receives two arguments:
   * an array of integers
   * a target integer
+
 The function should return all pairs of numbers found in the array that add to the target number.
 
 ```js
@@ -40,7 +41,7 @@ Big O is a pretty intuitive concept! Some of the terminology and jargon might be
 
 ![Master of Big O](https://media.giphy.com/media/dRk2vIzh5v0NG/200w_d.gif)
 
-**Big O is a way to compare algorithms to each other.** It doesn't make sense to compare, for example, the number of seconds that some algorithm takes to complete because that would be different on different computers. It also would be different given different inputs. So developers need some way to describe algorithms' efficiency in relation to each other in an abstract and high-level way.
+**Big O is a way to compare algorithms to each other.** It doesn't make sense to compare, for example, the number of seconds that some algorithm takes to complete. The algorithm will take a vastly different amount of physical time to run on IBM's Watson (a super computer) as compared to your MacBook as compared to your grandma's PC from 2004. The runtime will also  be different given the size of the input. So developers need some way to describe algorithms' efficiency in relation to each other in an abstract and high-level way.
 
 Why is this important? As programmers, we will balance the  **_efficiency_** of an algorithm against the amount of **_space in memory_** that an algorithm requires.
 
@@ -133,7 +134,7 @@ When we consider the worst case scenario, an enumerable must iterate through eve
 
 If you were to chart the `.find` method on a graph where the x-axis represents the number of elements and the y-axis represents the units of work that your computer has to do, it would follow the green line on the graph below.
 
-![Big O Graph](public/big o graph.png)
+![Big O Graph](public/big_o_graph.png)
 
 ### This is called **Big O of N** or **`O(n)`** and also **linear time**.
 
