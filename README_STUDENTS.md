@@ -138,7 +138,7 @@ If you were to chart the `.find` method on a graph where the x-axis represents t
 
 ### This is called **Big O of N** or **`O(n)`** and also **linear time**.
 
-Why linear time? Because the algorithm creates a perfectly straight line on the graph. **_As the size of the input grows, the algorithm will take more time directly linearly proportionally._**
+Why "linear time?" **_As the size of the input grows, the algorithm will take more time directly linearly proportionally._** Therefore, the algorithm creates a perfectly straight line on the graph.
 
 One more time for the people in the back: **_it grows proportionally along both axes simultaneously._**
 
@@ -189,7 +189,7 @@ So you might think that Big O of the entire operation is `O(2n + 1)`...
 
 ![Confused Puppos](https://media.giphy.com/media/7L7hN0lga40lG/giphy-downsized.gif)
 
-#### Huh? We _**have**_ to remember that Big O is simply the 👉 highest 👈 level summary of the algorithm.
+#### Big O is simply the 👉 highest 👈 level summary of the algorithm.
 
 Big O of `contains_avg?` is still `O(n)`, or **linear time**. _**We drop the constant factor**, or in other words, you can ignore any of the constants (or integers) that would otherwise affect how we graph the algorithm._ The `2` and the `+ 1` go away.
 
@@ -271,7 +271,7 @@ const linearSearch = (arr, target) => {
 - And eventually it will return the number if it is equivalent to the target number (_or_ it may iterate through the entire array with no match)
 
 
-So when I ran `linearSearch(arr, 55)` searching for the target of `55`, the result was:
+When `linearSearch(arr, 55)` is run, searching for the target of `55`, the result was:
 
 ```js
 // Remaining elements to search: 1000
@@ -296,7 +296,7 @@ If we create a `sortedArr1` of 1,000 sorted elements:
 sortedArr1 =  [1, 1, 2, 4, 6, 7, 7, 7, 8, 8, 9, 9, 9, 10, 10, 10, 12, 12, 15, 15, 15, 17, 18, 18, 19, 19, 20, 21, 22, 22, 23, 23, 24, 26, 27, 28, 29, 30, 32, 32, 32, 33, 34, 34, 35, 35, 36, 38, 38, 40, 41, 41, 41, 43, 44, 45, 46, 46, 47, 48, 50, 51, 53, 55, 55, 55, 55, 56, 57, 58, 58, 59, 60, 61, 62, 64, 65, 66, 67, 67, 67, 67, 68, 69, 70, 70, 70, 71, 73, 74, 74, 76, 77, 78, 78, 79, 80, 82, 83, 83, …]
 ```
 
-And if we run `linearSearch(sortedArr1, 71)` on this new, sorted array, the result might resemble...
+When  `linearSearch(sortedArr1, 71)` runs with this new, sorted array, the result might resemble...
 
 ```js
 // Remaining elements to search: 1000
@@ -315,11 +315,13 @@ The runtime of `linearSearch` **_regardless of whether we run it with an unsorte
 
 #### **_O(n) or linear time!_**
 
-**The array being sorted DID 🤜 NOT 🤛 AFFECT the performance of the algorithm.**
+**The array being sorted DID NOT AFFECT the performance of the algorithm.**
 
 ![Gasping Kitten](https://media.giphy.com/media/vSSdLSLbGIXio/giphy.gif)
 
-**But if we DO have a sorted array, we 👏 can 👏 do 👏 better 👏 than linear time. Because the array is sorted, we know there is a pattern to arrangement of the elements, and we can use that knowledge to structure our search for a targeted element differently.** _(Please note, this function is recursive, which we won't review in this lecture.)_
+**If we DO have a sorted array, we 👏 can 👏 do 👏 better 👏 than linear time.**
+
+**Because the array is sorted, we know there is a pattern to arrangement of the elements, and we can use that knowledge to structure our search for a targeted element differently.** _(Please note, this function is recursive, which we won't review in this lecture.)_
 
 Below is a **_binary search_** function.
 
@@ -374,13 +376,13 @@ Let's see it run... `binarySearch(sortedArr1, 201)`
 
 It _ONLY_ had to do 10 units of work in order to find `201` as compared to hundreds (or more! 💀) units of work in the `linearSearch()`
 
-If we were to create a sorted array of 2,000 elements:
+With a sorted array of 2,000 elements:
 
 ```js
 sortedArr2 = [0, 1, 1, 1, 1, 1, 2, 2, 4, 4, 5, 5, 6, 7, 7, 7, 7, 8, 8, 10, 11, 11, 11, 12, 12, 13, 13, 14, 14, 15, 16, 16, 17, 18, 18, 18, 19, 20, 20, 20, 21, 21, 21, 22, 22, 22, 22, 22, 22, 23, 24, 25, 25, 25, 25, 25, 26, 27, 27, 27, 28, 28, 28, 28, 29, 29, 29, 30, 31, 31, 32, 32, 32, 32, 32, 32, 33, 33, 34, 34, 35, 36, 36, 37, 38, 39, 39, 40, 40, 41, 42, 43, 43, 43, 43, 44, 44, 47, 47, 47, …]
 ```
 
-And if we ran `binarySearch(sortedArr2, 537)`, the result would be:
+When `binarySearch(sortedArr2, 537)` runs, the result would be:
 
 ```js
 // Remaining elements to search: 2000
@@ -467,7 +469,7 @@ Well, let's think about it together.
 
 For every element of the array (that's `O(n)`) we have to try to combine it with **_every other element of the array_** (also `O(n)`).
 
-So if we had an 8 element array, `hasTargetSum` would attempt to add the first element to 8 other things. Then for the second element, `hasTargetSum` would add it to all 8 other elements. This would occur for every element in the array. In total, this function would do 8 * 8 units or work, or 64 comparisons.
+With an array of 8 elements, `hasTargetSum` would add the first element to 8 other things. Then for the second element, `hasTargetSum` would add it to all 8 other elements. This would occur for every element in the array. In total, this function would do 8 * 8 units or work, or 64 comparisons.
 
 ![Road Runner](https://media.giphy.com/media/LfT85xyPFiGrK/200w_d.gif)
 
@@ -497,7 +499,9 @@ But Big O has **NOT** changed with this refactor! 🤯 It is still quadratic tim
 
 There is a way to solve this problem in linear time: in other words, with **_one loop_**.
 
-In computer science, everything is a tradeoff. If we want our algorithm to take up less _time_, we will have to take up more _space_. This is typically an acceptable tradeoff to make. 💸 Memory is cheap.
+### In computer science, everything is a tradeoff.
+
+**If we want our algorithm to take up less _time_, we will have to take up more _space_.** This is typically an acceptable tradeoff to make. 💸 Memory is cheap.
 
 Let's begin by allocating an extra data structure in memory. The algorithm will store the numbers that it has already iterated through and then check if the target number exists in the secondary array of "seen" numbers.
 
@@ -564,7 +568,7 @@ It's O(n):
 
 Now, imagine some Marie Kondo style drawer of very neat clothes:
 
-![Neat Clothes in Drawers](https://www.tasteofhome.com/wp-content/uploads/2018/03/shutterstock_453967519.jpg)
+![Neat Clothes in Drawers](https://i.pinimg.com/originals/b4/cc/c6/b4ccc60804af2f29e58e55f9f64e5272.jpg)
 
 Because every item has a **SINGLE** designated place to live, we can do much better than O(n).
 
