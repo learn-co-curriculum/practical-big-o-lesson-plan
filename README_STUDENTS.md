@@ -576,7 +576,7 @@ In a perfect universe, you could have an infinite number of infinitely small dra
 
 ![Cat Doing Laundry](https://media.giphy.com/media/r1UDWqAh0ajK0/giphy.gif)
 
-Getting back to computers now, the way this is done is with a _hash function_ works (hence the data structure term, 'hash'). **When you ask a hash the question of wether it has a certain key it runs the key through a _hash function_ which corresponds to one place in memory where that value must exist if it is present in the hash.**
+Getting back to computers now, the way this is done is with a _hash function_ works (hence the data structure term, 'hash'). **When you ask a hash whether a certain key exists, it runs the key through a _hash function_. The key will ONLY correspond to one SINGLE place in memory where that value must exist if it IS present in the hash.**
 
 So let's refactor `hasTargetSum` so that our algorithm runs in linear time instead of quadratic time!
 
@@ -621,7 +621,7 @@ hasTargetSum(array, 8)
 // => results = [[5, 3], [7, 1]]
 ```
 
-`hasTargetSum` now truly has one loop, which means this operates **linear time**. We did this by making a 👉 decision 👈 to make a tradeoff: we took up more space by allocating more memory for this extra hash to make the runtime more efficient.
+`hasTargetSum` now truly has one loop, which means this operates **linear time**. This is a 👉 tradeoff 👈 : we took up more space by allocating more memory for this extra hash to make the runtime more efficient.
 
 ![Space Dog](https://media.giphy.com/media/YRjZCWEIqMuEU/giphy-tumblr.gif)
 
@@ -647,3 +647,6 @@ There are tons of whiteboarding/algorithm problems that have both a quadratic ti
 Here's an example problem where you can apply this same strategy. Start with the quadratic time solution and refactor to linear time by using a hash.
 
 [Ransom Note Problem](https://gist.github.com/alexgriff/0061bd3ff76c06341a62489899890b01)
+
+# Crushed It!
+![Dancing Michelle](https://media.giphy.com/media/YJ5OlVLZ2QNl6/giphy-downsized.gif)
