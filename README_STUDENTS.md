@@ -405,7 +405,7 @@ _The size of the input (`n`) has to double in size in order for our computer to 
 
 ## The Big O of `binarySearch` is called **logarithmic time** or `O(log n)`. It is the **yellow** line on the graph below!
 
-![Big O Graph](public/big o graph.png)
+![Big O Graph](public/big_o_graph.png)
 
 **_Logarithm means sloooOoOOOoOoOooOoow growing. The arc on the line is gradually growing along the y-axis as it extends along the x-axis._**
 
